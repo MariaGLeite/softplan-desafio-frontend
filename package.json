@@ -1,27 +1,28 @@
 {
-  "name": "react-app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "desafio-softplan",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.21.1",
+    "date-fns": "^2.16.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-feather": "^2.0.8",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
+    "styled-components": "^5.2.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "animate-css-styled-components": "^1.0.2"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
