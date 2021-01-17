@@ -1,9 +1,16 @@
 import React from 'react';
-import AppView from './AppView'
+import { ThemeProvider } from 'styled-components';
+
+import { GlobalStyle } from "./assets/theme/globalStyle";
+import { whiteTheme } from "./assets/theme/themes";
+import Routes from './assets/routes';
 
 const App = () => {
   return (
-    <AppView />
+    <ThemeProvider theme={whiteTheme} >
+      <GlobalStyle />
+      <Routes />
+    </ThemeProvider>
   );
 }
 

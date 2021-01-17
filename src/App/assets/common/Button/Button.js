@@ -2,9 +2,7 @@ import React from 'react';
 import ButtonView from './ButtonView'
 
 const Button = () => {
-  return (
-    <ButtonView />
-  );
+  return ();
 }
 
 export default Button;
