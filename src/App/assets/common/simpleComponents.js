@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const Typography = styled.p`
+  width: ${props => props.width ? `${props.width}px` : 'fit-content'};
   text-align: ${props => props.align || 'left'};
-  color: ${props => props.color || props.theme.colors.primaryText};
+
+  color: ${props => props.fontColor || props.theme.colors.black87};
   font-weight: ${props => props.weight || '400'};
   font-size: ${props => 
     (props.size === 'G' && '24') ||
@@ -11,3 +13,19 @@ export const Typography = styled.p`
     '16'
   }px;
 `
+
+export const Button = styled.button`
+  height: ${props => props.height || '36'}px;
+  width: 136px;
+  cursor: pointer;
+
+  border: 1px solid ${props => props.theme.colors.black54};
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: 14px;
+  color: ${props => props.theme.colors.black54};
+
+  outline: none;
+  background-color: ${props => props.theme.colors.background.primary};
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;

@@ -4,18 +4,27 @@ import { Typography } from '../../assets/common/simpleComponents';
 
 import SearchBar from '../../assets/common/SearchBar';
 import { Content } from './InitialPageStyle'
+import { useKeyListener } from '../../assets/hooks';
 
 const InitialPage = () => {
 
   const [shouldRedirectToSearchPage, setShouldRedirectToSearchPage] = useState(false);
-  const handleChangeSearchBar = useCallback(() => setShouldRedirectToSearchPage(true), []);
+  const [searchBarValue, setSearchBarValue] = useState("");
+
+  const handleClickSearchBar = useCallback(() => {
+    setShouldRedirectToSearchPage(true);
+  }, []);
+
+  const handleChangeSearchBar = useCallback(e => setSearchBarValue(e.target.value), []);
+
+  useKeyListener(handleClickSearchBar, ['Enter']);
 
   return (
     <>
-      {shouldRedirectToSearchPage && <Redirect to="/searchPage" />}
+      {shouldRedirectToSearchPage && <Redirect to={`/buscaProcesso/${btoa(searchBarValue)}`}  />}
 
       <Content>
-        <Typography color={props => props.theme.colors.secoundaryText}
+        <Typography fontColor={props => props.theme.colors.primary}
                     align="center"
                     size="G">
               Busca de Processos
@@ -23,6 +32,8 @@ const InitialPage = () => {
 
         <SearchBar 
           placeholder="Pesquise por uma informação do processo" 
+          searchBarValue={searchBarValue}
+          onClick={handleClickSearchBar}
           onChange={handleChangeSearchBar}/>
 
         <Typography>

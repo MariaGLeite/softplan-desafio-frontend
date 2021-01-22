@@ -3,9 +3,9 @@ import { Search } from 'react-feather';
 
 import { IconsPosition } from './SearchIconStyle';
 
-const SearchIcon = () => {
+const SearchIcon = ({onClick}) => {
   return (
-    <IconsPosition>
+    <IconsPosition {...{onClick}} >
       <Search height="18px" width="18px" />
     </IconsPosition>
   );

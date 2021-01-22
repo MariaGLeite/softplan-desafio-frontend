@@ -7,11 +7,11 @@ import {
   Input
 } from './SearchBarStyle';
 
-const SearchBar = ({placeholder}) => {
+const SearchBar = ({placeholder, searchBarValue, onChange, onClick}) => {
   return (
     <SearchDiv>
-      <Input {...{placeholder}} />
-      <SearchIcon />
+      <Input value={searchBarValue} {...{placeholder, onChange}} />
+      <SearchIcon {...{onClick}} />
     </SearchDiv>
   );
 }

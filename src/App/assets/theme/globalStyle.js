@@ -9,15 +9,15 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     font-weight: bold;
-    color: ${props => props.theme.colors.secoundaryText};
+    color: ${props => props.theme.colors.primary};
 
     &:visited {
-      color: ${props => props.theme.colors.secoundaryText};
+      color: ${props => props.theme.colors.primary};
     }
   }
 
   body {
-    color: ${props => props.theme.colors.primaryText};
+    color: ${props => props.theme.colors.black87};
     background-color: ${props => props.theme.colors.background.primary};
     overflow: hidden;
   }
