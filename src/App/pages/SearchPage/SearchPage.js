@@ -17,14 +17,18 @@ import {
 import { useComponentDidMount, useKeyListener } from "../../assets/hooks";
 
 const SearchPage = () => {
+  const [lastSearchedValue, setLastSearchedValue] = useState(null);
   const [searchBarValue, setSearchBarValue] = useState("");
   const [shouldRedirectToRegisterPage, setShouldRedirectToRegisterPage] = useState(false);
-  const [showingResults, setShowingResults] = useState({});
+  const [showingResults, setShowingResults] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const { base64SearchValue } = useParams();
 
   const handleUpdateResults = useCallback(() => {
+    if(searchBarValue === lastSearchedValue) return;
+
+    setLastSearchedValue(searchBarValue);
     setIsLoading(true);
 
     axios
@@ -32,8 +36,12 @@ const SearchPage = () => {
       .then((response) => {
         setShowingResults(response.data);
         setIsLoading(false);
+      }).catch(() => {
+        setShowingResults([]);
+        setIsLoading(false);
       });
-  }, [searchBarValue]);
+      
+  }, [searchBarValue, lastSearchedValue]);
 
   const handleClickSearchBar = useCallback(() => handleUpdateResults(), [handleUpdateResults]);
   const handleClickNew = useCallback(() => setShouldRedirectToRegisterPage(true), []);
