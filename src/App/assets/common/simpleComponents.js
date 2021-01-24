@@ -19,13 +19,24 @@ export const Button = styled.button`
   width: 136px;
   cursor: pointer;
 
-  border: 1px solid ${props => props.theme.colors.black54};
+  border: 1px solid ${props => props.colorTheme || props.theme.colors.black54};
   box-sizing: border-box;
   font-weight: 700;
   font-size: 14px;
-  color: ${props => props.theme.colors.black54};
+  color: ${props => props.colorTheme || props.theme.colors.black54};
 
   outline: none;
   background-color: ${props => props.theme.colors.background.primary};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
+
+export const Image = styled.div`
+  height: ${props => props.height || '84'}px;
+  width: ${props => props.width || '84'}px;
+  margin: ${props => props.margin || '12'}px;
+
+  background-image: url(${props => props.url});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`

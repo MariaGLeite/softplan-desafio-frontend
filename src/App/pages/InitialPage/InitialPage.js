@@ -7,7 +7,6 @@ import { Content } from './InitialPageStyle'
 import { useKeyListener } from '../../assets/hooks';
 
 const InitialPage = () => {
-
   const [shouldRedirectToSearchPage, setShouldRedirectToSearchPage] = useState(false);
   const [searchBarValue, setSearchBarValue] = useState("");
 

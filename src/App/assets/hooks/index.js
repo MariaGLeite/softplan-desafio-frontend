@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 export const useComponentDidMount = (callback) => {
   // eslint-disable-next-line
-  useEffect(callback, []);
+  useEffect(callback);
 }
 
 export const useKeyListener = (callback, keys) => {
@@ -21,9 +21,7 @@ export const useKeyListener = (callback, keys) => {
       setKeyPressed(false);
       callback();
     }
-
-    // eslint-disable-next-line
-  }, [keyPressed]);
+  }, [keyPressed, callback]);
 
   useComponentDidMount(() => {
     window.addEventListener('keydown', handleKeyDown);
