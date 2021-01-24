@@ -6,7 +6,7 @@ import { IconsPosition } from './SearchIconStyle';
 const SearchIcon = ({onClick}) => {
   return (
     <IconsPosition {...{onClick}} >
-      <Search height="18px" width="18px" />
+      <Search height='18px' width='18px' />
     </IconsPosition>
   );
 }

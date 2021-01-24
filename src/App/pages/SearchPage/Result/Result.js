@@ -29,16 +29,16 @@ const Result = ({number, subject, interest, description, index, hasInspectingPro
               </Line>
 
               <Line>
-                <Value widthPercentage="50">{number}</Value>
-                <Value widthPercentage="50">{subject.length > 25 ? `${subject.substring(0, 25)}...` : subject}</Value>
+                <Value widthPercentage='50'>{number}</Value>
+                <Value widthPercentage='50'>{subject.length > 25 ? `${subject.substring(0, 25)}...` : subject}</Value>
               </Line>
 
-              <Line marginTop="10">
+              <Line marginTop='10'>
                 <Topic>Interessado</Topic>
               </Line>
 
               <Line>
-                <Value widthPercentage="50">{interest.length > 25 ? `${interest.substring(0, 25)}...` : interest}</Value>
+                <Value widthPercentage='50'>{interest.length > 25 ? `${interest.substring(0, 25)}...` : interest}</Value>
               </Line>
             </GridBody>
           </SimpleGrid>) ||

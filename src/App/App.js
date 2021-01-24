@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { GlobalStyle } from "./assets/theme/globalStyle";
-import { whiteTheme } from "./assets/theme/themes";
+import { GlobalStyle } from './assets/theme/globalStyle';
+import { whiteTheme } from './assets/theme/themes';
 import Routes from './assets/routes';
 
 const App = () => {

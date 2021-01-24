@@ -8,7 +8,7 @@ import { useKeyListener } from '../../assets/hooks';
 
 const InitialPage = () => {
   const [shouldRedirectToSearchPage, setShouldRedirectToSearchPage] = useState(false);
-  const [searchBarValue, setSearchBarValue] = useState("");
+  const [searchBarValue, setSearchBarValue] = useState('');
 
   const handleClickSearchBar = useCallback(() => {
     setShouldRedirectToSearchPage(true);
@@ -24,19 +24,19 @@ const InitialPage = () => {
 
       <Content>
         <Typography fontColor={props => props.theme.colors.primary}
-                    align="center"
-                    size="G">
+                    align='center'
+                    size='G'>
               Busca de Processos
         </Typography>
 
         <SearchBar 
-          placeholder="Pesquise por uma informação do processo" 
+          placeholder='Pesquise por uma informação do processo' 
           searchBarValue={searchBarValue}
           onClick={handleClickSearchBar}
           onChange={handleChangeSearchBar}/>
 
         <Typography>
-          Você pode criar um novo processo <Link to="/cadastro">clicando aqui</Link>.
+          Você pode criar um novo processo <Link to='/processo'>clicando aqui</Link>.
         </Typography>
 
       </Content>

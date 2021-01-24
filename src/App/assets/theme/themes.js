@@ -7,7 +7,8 @@ export const whiteTheme = {
     black38: 'rgba(196, 196, 196, 1)',
 
     background: {
-      primary: '#fff'
+      primary: '#fff',
+      secoundary: 'rgba(0, 0, 0, 0.38)'
     }
   }
 };

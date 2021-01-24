@@ -29,12 +29,12 @@ const InspectingProcess = ({reloadScreen, process, handleClickClose}) => {
 
   return (
     <>
-      {shouldRedirectToEditPage && <Redirect to={`/cadastro/${process.id}}`} />}
+      {shouldRedirectToEditPage && <Redirect to={`/processo/${btoa(process.id)}`} />}
 
       <Content> 
 
         <CloseButton onClick={handleClickClose}>
-          <CloseImage width="24px" height="24px" color="#696969" />
+          <CloseImage width='24px' height='24px' color='#696969' />
         </CloseButton>
 
         <ProcessHeader

@@ -1,1 +1,1 @@
-export { default } from "./InterestedGrid";
+export { default } from './InterestedGrid';

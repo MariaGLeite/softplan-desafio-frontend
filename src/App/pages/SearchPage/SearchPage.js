@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import axios from "axios";
 
 import SearchBar from "../../assets/common/SearchBar";
 import Result from "./Result";
 import InspectingProcess from './InspectingProcess';
-import { Typography, Button } from "../../assets/common/simpleComponents";
 
 import { 
   Content, 
@@ -17,20 +16,22 @@ import {
 } from "./SearchPageStyle";
 
 import { useComponentDidMount, useKeyListener } from "../../assets/hooks";
+import { Typography, Button } from "../../assets/common/simpleComponents";
 
 const SearchPage = () => {
   const [lastSearchedValue, setLastSearchedValue] = useState(null);
   const [searchBarValue, setSearchBarValue] = useState("");
-  const [shouldRedirectToRegisterPage, setShouldRedirectToRegisterPage] = useState(false);
-  const [shouldRedirectToSearchPage, setShouldRedirectToSearchPage] = useState(false);
   const [showingResults, setShowingResults] = useState([]);
   const [inspectingProcess, setInspectingProcess] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [shouldRedirectToRegisterPage, setShouldRedirectToRegisterPage] = useState(false);
+  const [shouldRedirectToSearchPage, setShouldRedirectToSearchPage] = useState(false);
+
   const { base64SearchValue } = useParams();
 
-  const handleUpdateResults = useCallback(async () => {
-    if(searchBarValue === lastSearchedValue) return;
+  const handleUpdateResults = useCallback(async (isReload = false) => {
+    if(!isReload && searchBarValue === lastSearchedValue) return;
 
     setShouldRedirectToSearchPage(true);
     setLastSearchedValue(searchBarValue);
@@ -58,26 +59,30 @@ const SearchPage = () => {
   const handleClickNew = useCallback(() => setShouldRedirectToRegisterPage(true), []);
   const handleChangeSearchBar = useCallback((e) => setSearchBarValue(e.target.value), []);
 
-  useEffect(() => {
-    setSearchBarValue(atob(base64SearchValue));
-    setLastSearchedValue(atob(base64SearchValue));
+  useComponentDidMount(() => {
+    try {
+      setSearchBarValue(atob(base64SearchValue));
+      setLastSearchedValue(atob(base64SearchValue));
 
-    axios
-      .get(`http://localhost:3002/processo?q=${atob(base64SearchValue)}`)
-      .then((response) => {
-        setShowingResults(response.data);
-        setIsLoading(false);
-      }).catch(() => {
-        setShowingResults([]);
-        setIsLoading(false);
-      });
-  }, []);
+      axios
+        .get(`http://localhost:3002/processo?q=${atob(base64SearchValue)}`)
+        .then(response => {
+          setShowingResults(response.data);
+          setIsLoading(false);
+        }).catch(() => {
+          setShowingResults([]);
+          setIsLoading(false);
+        });
+    } catch(e) {
+      // TODO: Redirecionar para página "/inicio".
+    }
+  });
 
   useKeyListener(handleUpdateResults, ['Enter']);
 
   return (
     <>
-      {shouldRedirectToRegisterPage && <Redirect to={`/cadastro}`} />}
+      {shouldRedirectToRegisterPage && <Redirect to={`/processo`} />}
       {shouldRedirectToSearchPage && <Redirect to={`/buscaProcesso/${btoa(searchBarValue)}`}  />}
 
       <Content>
@@ -130,7 +135,7 @@ const SearchPage = () => {
           {inspectingProcess && 
             <InspectingProcess 
               {...{handleClickClose}} 
-              reloadScreen={() => handleUpdateResults()} 
+              reloadScreen={() => handleUpdateResults(true)} 
               process={inspectingProcess} />
           }
         </ResultsDiv>

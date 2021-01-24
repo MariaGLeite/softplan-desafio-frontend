@@ -1,1 +1,1 @@
-export { default } from "./InspectingProcess";
+export { default } from './InspectingProcess';
